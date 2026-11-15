@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Windows 7</title>
+<style>
+*{box-sizing:border-box;user-select:none}
+html,body{margin:0;height:100%;overflow:hidden;font:12px "Segoe UI",Tahoma,Arial,sans-serif;color:#000}
+body{background:radial-gradient(ellipse 70% 60% at 50% 62%,#8fe0ff 0%,#3aa3e3 28%,#0f58b0 62%,#06306a 100%)}
+body::before{content:"";position:fixed;inset:0;background:conic-gradient(from 200deg at 50% 75%,transparent 0 8deg,rgba(255,255,255,.14) 14deg,transparent 24deg 40deg,rgba(255,255,255,.1) 48deg,transparent 60deg 90deg,rgba(255,255,255,.12) 100deg,transparent 112deg 360deg);filter:blur(6px);pointer-events:none}
+#desk{position:fixed;inset:0 0 40px 0}
+#icons{position:absolute;inset:6px;display:flex;flex-flow:column wrap;align-content:flex-start;gap:4px}
+.ic{width:76px;padding:4px 2px;text-align:center;color:#fff;text-shadow:0 1px 3px #000,0 0 3px #000;border:1px solid transparent;border-radius:3px}
+.ic i{display:block;font-style:normal;font-size:38px;line-height:44px;filter:drop-shadow(0 2px 3px rgba(0,0,0,.5))}
+.ic.sel{background:rgba(120,180,255,.3);border-color:rgba(190,225,255,.7);box-shadow:inset 0 0 0 1px rgba(255,255,255,.25)}
+.win{position:absolute;display:flex;flex-direction:column;padding:0 7px 7px;max-width:100vw;max-height:calc(100vh - 40px);border-radius:8px 8px 0 0;border:1px solid rgba(0,0,0,.62);background:linear-gradient(rgba(214,224,238,.78),rgba(188,204,226,.78));backdrop-filter:blur(8px) saturate(1.2);box-shadow:inset 0 0 0 1px rgba(255,255,255,.65),0 8px 28px rgba(0,0,0,.5);animation:pop .14s ease-out}
+.win.on{background:linear-gradient(rgba(143,189,235,.72),rgba(107,160,222,.7) 40%,rgba(120,170,226,.72));box-shadow:inset 0 0 0 1px rgba(255,255,255,.7),0 10px 36px rgba(0,0,0,.6)}
+.win.max{inset:0 0 0 0!important;width:auto!important;height:auto!important;border-radius:0}
+@keyframes pop{from{opacity:0;transform:scale(.94)}}
+.tb{height:30px;display:flex;align-items:center;gap:6px;flex:none}
+.tb .wi{font-size:15px}
+.tt{flex:1;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;font-size:12px;text-shadow:0 0 8px #fff,0 0 5px #fff,0 0 3px #fff}
+.btns{display:flex;align-self:flex-start;margin-right:-4px}
+.btns b{height:19px;width:28px;display:grid;place-items:center;font:700 11px "Segoe UI";color:#223;border:1px solid rgba(0,0,0,.55);border-top:0;margin-left:-1px;background:linear-gradient(rgba(240,246,252,.85),rgba(190,208,230,.7) 48%,rgba(150,175,208,.75) 52%,rgba(190,215,238,.8));box-shadow:inset 0 0 0 1px rgba(255,255,255,.55);cursor:default}
+.btns b:first-child{border-radius:0 0 0 5px}
+.btns .cl{width:47px;border-radius:0 0 5px 0;color:#fff;text-shadow:0 0 3px #400;background:linear-gradient(#e9b3a6,#d9826e 48%,#c4452a 52%,#d77a5f)}
+.btns b:hover{filter:brightness(1.15)}
+.btns .cl:hover{background:linear-gradient(#f6c2b4,#ee8f78 48%,#e0452a 52%,#f08c70)}
+.body{flex:1;min-height:0;background:#fff;border:1px solid #5f7087;display:flex;flex-direction:column;overflow:auto}
+.menu{display:flex;gap:2px;padding:2px 4px;background:linear-gradient(#fff,#f0f3f8);border-bottom:1px solid #dde3ec;flex:none}
+.menu span{padding:1px 7px}.menu span:hover{background:#dbe9fb;box-shadow:inset 0 0 0 1px #aac8ef;border-radius:2px}
+textarea{flex:1;border:0;outline:0;resize:none;padding:3px;font:13px Consolas,"Courier New",monospace;user-select:text}
+.calc{background:linear-gradient(#e9eef6,#d3dded);padding:8px;height:100%}
+.calc input{width:100%;height:36px;text-align:right;font:20px "Segoe UI";padding:0 6px;border:1px solid #7b8aa0;border-radius:2px;margin-bottom:8px;background:#fff}
+.calc div{display:grid;grid-template-columns:repeat(4,1fr);gap:5px}
+.calc button{height:34px;font:14px "Segoe UI";border:1px solid #707070;border-radius:3px;background:linear-gradient(#f6f6f6 45%,#dcdcdc 50%,#cfcfcf);cursor:default}
+.calc button:hover{border-color:#3c7fb1;background:linear-gradient(#eaf6fd 45%,#bee6fd 50%,#a7d9f5)}
+.ex{display:flex;flex-direction:column;height:100%}
+.addr{display:flex;gap:6px;padding:5px;background:linear-gradient(#f7f9fc,#e6ecf5);border-bottom:1px solid #c4cfdf;flex:none}
+.addr em{font-style:normal;width:26px;height:22px;border-radius:50%;background:radial-gradient(#9fd2f7,#2b78c4);color:#fff;display:grid;place-items:center}
+.addr span{flex:1;background:#fff;border:1px solid #9aa9bf;padding:3px 6px}
+.exm{display:flex;flex:1;min-height:0}
+.side{width:150px;background:#f3f7fc;border-right:1px solid #d5deea;padding:8px;line-height:22px;color:#1e3f73;flex:none}
+.side b{display:block;color:#47658f;margin-top:6px;font-weight:600}
+.main{flex:1;padding:10px;overflow:auto}
+.main h4{margin:6px 0;font-weight:400;font-size:12px;color:#1e3287;border-bottom:1px solid #d3dcea;padding-bottom:2px}
+.drv{display:flex;gap:10px;align-items:center;padding:6px;border:1px solid transparent;width:260px;border-radius:3px}
+.drv:hover{background:#e9f3fd;border-color:#bcdcf7}
+.drv i{font-size:34px;font-style:normal}
+.drv u{display:block;height:13px;width:180px;border:1px solid #888;background:linear-gradient(#e8e8e8,#d4d4d4);margin:3px 0;text-decoration:none}
+.drv u s{display:block;height:100%;width:62%;background:linear-gradient(#53c1f1,#1a8fd6)}
+.drv small{color:#6d6d6d}
+#bar{position:fixed;left:0;right:0;bottom:0;height:40px;z-index:9999;display:flex;align-items:center;padding-left:62px;background:linear-gradient(rgba(96,136,186,.8),rgba(34,66,112,.88) 48%,rgba(14,34,70,.92) 52%,rgba(24,58,104,.92));backdrop-filter:blur(10px);border-top:1px solid rgba(255,255,255,.5);box-shadow:inset 0 1px 0 rgba(255,255,255,.25)}
+#orb{position:absolute;left:5px;bottom:-4px;width:48px;height:48px;border-radius:50%;border:1px solid rgba(255,255,255,.55);background:radial-gradient(circle at 50% 18%,#a8e4ff 0,#2d8fe0 40%,#0b3f94 78%);box-shadow:0 0 8px rgba(80,170,255,.7),inset 0 -6px 10px rgba(0,30,90,.6);display:grid;place-items:center;cursor:default}
+#orb:hover,#orb.on{filter:brightness(1.25) saturate(1.2)}
+#orb div{display:grid;grid-template-columns:11px 11px;gap:2px;transform:skewY(-6deg) rotate(-3deg)}
+#orb div b{height:10px;border-radius:2px 5px 2px 5px;box-shadow:0 0 3px rgba(0,0,0,.4)}
+#tasks{display:flex;gap:3px;flex:1;min-width:0}
+.tk{display:flex;align-items:center;gap:6px;width:150px;min-width:44px;height:32px;padding:0 8px;color:#fff;font-size:12px;white-space:nowrap;overflow:hidden;border-radius:3px;border:1px solid rgba(255,255,255,.3);background:linear-gradient(rgba(255,255,255,.22),rgba(255,255,255,.06) 50%,rgba(255,255,255,.1));box-shadow:inset 0 0 0 1px rgba(255,255,255,.12)}
+.tk:hover{background:linear-gradient(rgba(255,255,255,.4),rgba(255,255,255,.14) 50%,rgba(150,210,255,.28))}
+.tk.on{background:linear-gradient(rgba(255,255,255,.45),rgba(255,255,255,.2) 50%,rgba(190,230,255,.3));border-color:rgba(255,255,255,.6)}
+.tk span{font-size:16px}
+#tray{display:flex;align-items:center;gap:9px;color:#fff;height:100%;text-shadow:0 0 3px #000}
+#clk{text-align:center;line-height:14px;font-size:12px;padding:0 4px}
+#show{width:14px;height:100%;border-left:1px solid rgba(255,255,255,.5);background:linear-gradient(90deg,rgba(255,255,255,.1),rgba(255,255,255,.28))}
+#show:hover{background:rgba(255,255,255,.5)}
+#sm{position:fixed;left:3px;bottom:40px;width:400px;height:466px;z-index:10000;display:none;padding:6px;gap:6px;border-radius:8px 8px 0 0;border:1px solid rgba(0,0,0,.6);background:linear-gradient(rgba(120,170,225,.72),rgba(50,100,170,.8));backdrop-filter:blur(12px);box-shadow:inset 0 0 0 1px rgba(255,255,255,.55),0 0 26px rgba(0,0,0,.55);grid-template-columns:1fr 150px;grid-template-rows:1fr auto}
+#sm.open{display:grid}
+.pl{background:#fff;border-radius:4px;border:1px solid #8aa3c4;padding:4px;display:flex;flex-direction:column;gap:1px}
+.pl div,.pr div{display:flex;align-items:center;gap:8px;padding:5px 6px;border:1px solid transparent;border-radius:3px;font-size:12px}
+.pl div i,.pr div i{font-style:normal;font-size:22px}
+.pl div:hover{background:linear-gradient(#f4f9ff,#d7e9fb);border-color:#b8d6f5}
+.pl hr{border:0;border-top:1px solid #d5dde9;margin:auto 6px 4px}
+.pr{color:#fff;padding:4px 0;text-shadow:0 0 3px rgba(0,30,80,.7)}
+.pr div{padding:6px}.pr div:hover{background:rgba(255,255,255,.28);border-color:rgba(255,255,255,.5)}
+.sr{grid-column:1/3;display:flex;gap:6px}
+.sr span{flex:1;background:#fff;border:1px solid #6c86a8;border-radius:3px;padding:4px 8px;color:#777;font-style:italic}
+.sr button{width:96px;color:#fff;font:12px "Segoe UI";border:1px solid rgba(0,0,0,.55);border-radius:3px;background:linear-gradient(#5a7396,#2b4268 50%,#1a2f52 52%,#2c4a78)}
+.sr button:hover{background:linear-gradient(#7791b8,#3d5a8c 50%,#2a4574 52%,#3f66a2)}
+#off{position:fixed;inset:0;z-index:20000;background:#000;color:#fff;display:none;place-items:center;font:22px "Segoe UI Light","Segoe UI",sans-serif}
+</style>
+</head>
+<body>
+<div id="desk"><div id="icons"></div></div>
+<div id="sm">
+ <div class="pl" id="pl"></div>
+ <div class="pr" id="pr"></div>
+ <div class="sr"><span>Search programs and files</span><button id="shut">Shut down &#9656;</button></div>
+</div>
+<div id="bar">
+ <div id="orb"><div><b style="background:#f25022"></b><b style="background:#7fba00"></b><b style="background:#00a4ef"></b><b style="background:#ffb900"></b></div></div>
+ <div id="tasks"></div>
+ <div id="tray"><span>&#9650;</span><span>&#128266;</span><span>&#128246;</span><div id="clk"></div><div id="show"></div></div>
+</div>
+<div id="off"><span id="offt">Shutting down</span></div>
+<script>
+const $=s=>document.querySelector(s);
+let z=10,n=0;
+const ex=(side,main,addr)=>`<div class="ex"><div class="addr"><em>&#9664;</em><em>&#9654;</em><span>${addr}</span></div><div class="exm"><div class="side">${side}</div><div class="main">${main}</div></div></div>`;
+const side=`<b>Favorites</b>Desktop<br>Downloads<br>Recent Places<b>Libraries</b>Documents<br>Music<br>Pictures<br>Videos<b>Computer</b>Local Disk (C:)<b>Network</b>`;
+const folder=(t,i)=>({t,i,w:620,h:400,html:ex(side,'<h4>This folder is empty.</h4>',t)});
+const A={
+ pc:{t:'Computer',i:'🖥️',w:700,h:430,html:ex(side,`<h4>Hard Disk Drives (1)</h4><div class="drv"><i>💽</i><div>Local Disk (C:)<u><s></s></u><small>88.4 GB free of 232 GB</small></div></div><h4>Devices with Removable Storage (1)</h4><div class="drv"><i>📀</i><div>DVD RW Drive (D:)<br><small>Insert a disc</small></div></div>`,'Computer')},
+ bin:{t:'Recycle Bin',i:'🗑️',w:620,h:380,html:ex(side,'<h4>This folder is empty.</h4>','Recycle Bin')},
+ np:{t:'Untitled - Notepad',i:'📝',w:540,h:360,html:'<div class="menu"><span>File</span><span>Edit</span><span>Format</span><span>View</span><span>Help</span></div><textarea spellcheck="false"></textarea>'},
+ calc:{t:'Calculator',i:'🧮',w:260,h:330,html:'<div class="calc"><input value="0" readonly><div></div></div>',init(e){
+  const d=e.querySelector('.calc div'),o=e.querySelector('input');let s='';
+  ['C','←','(',')','7','8','9','÷','4','5','6','×','1','2','3','−','0','.','=','+'].forEach(k=>{
+   const b=document.createElement('button');b.textContent=k;b.onclick=()=>{
+    if(k=='C')s='';else if(k=='←')s=s.slice(0,-1);
+    else if(k=='='){try{s=String(+Function('return '+s.replace(/÷/g,'/').replace(/×/g,'*').replace(/−/g,'-'))().toFixed(10))}catch(_){s='Error'}}
+    else{if(s=='Error')s='';s+=k}
+    o.value=s||'0'};d.appendChild(b)})}},
+ docs:folder('Documents','📁'),pics:folder('Pictures','🖼️'),music:folder('Music','🎵'),
+ cp:{t:'Control Panel',i:'⚙️',w:620,h:380,html:ex('<b>Control Panel Home</b>System and Security<br>Network and Internet<br>Hardware and Sound<br>Programs<br>User Accounts','<h4>Adjust your computer\'s settings</h4><p>System and Security<br>Network and Internet<br>Appearance and Personalization<br>Clock, Language, and Region</p>','Control Panel')}
+};
+const icons=['pc','bin','np','calc'];
+icons.forEach(k=>{const d=document.createElement('div');d.className='ic';d.innerHTML=`<i>${A[k].i}</i>${A[k].t.replace(' - Notepad','')}`;
+ d.onclick=e=>{e.stopPropagation();sel(d)};d.ondblclick=()=>open(k);$('#icons').appendChild(d)});
+function sel(d){document.querySelectorAll('.ic').forEach(i=>i.classList.remove('sel'));d&&d.classList.add('sel')}
+$('#desk').onclick=()=>{sel();sm(0)};
+function focus(w){document.querySelectorAll('.win').forEach(x=>x.classList.remove('on'));document.querySelectorAll('.tk').forEach(x=>x.classList.remove('on'));
+ w.classList.add('on');w.style.zIndex=++z;w.tk.classList.add('on')}
+function open(k){sm(0);const a=A[k];n++;
+ const w=document.createElement('div');w.className='win';
+ w.style.cssText=`left:${Math.min(90+n%7*32,innerWidth-200)}px;top:${40+n%7*28}px;width:${a.w}px;height:${a.h}px`;
+ w.innerHTML=`<div class="tb"><span class="wi">${a.i}</span><span class="tt">${a.t}</span><span class="btns"><b class="mn">&#8211;</b><b class="mx">&#9633;</b><b class="cl">&#10005;</b></span></div><div class="body">${a.html}</div>`;
+ $('#desk').appendChild(w);
+ const t=document.createElement('div');t.className='tk';t.innerHTML=`<span>${a.i}</span>${a.t}`;$('#tasks').appendChild(t);w.tk=t;
+ const mn=()=>{w.style.display='none';t.classList.remove('on');w.classList.remove('on')},
+  mx=()=>w.classList.toggle('max');
+ w.onpointerdown=()=>focus(w);
+ w.querySelector('.mn').onclick=mn;w.querySelector('.mx').onclick=mx;
+ w.querySelector('.cl').onclick=()=>{w.remove();t.remove()};
+ t.onclick=()=>{if(w.style.display=='none'){w.style.display='';focus(w)}else if(w.classList.contains('on'))mn();else focus(w)};
+ const tb=w.querySelector('.tb');tb.ondblclick=e=>{if(!e.target.closest('.btns'))mx()};
+ tb.onpointerdown=e=>{if(e.target.closest('.btns')||w.classList.contains('max'))return;
+  const dx=e.clientX-w.offsetLeft,dy=e.clientY-w.offsetTop;tb.setPointerCapture(e.pointerId);
+  tb.onpointermove=v=>{w.style.left=v.clientX-dx+'px';w.style.top=Math.max(0,v.clientY-dy)+'px'};
+  tb.onpointerup=()=>tb.onpointermove=null};
+ a.init&&a.init(w);focus(w)}
+const L=[['np','Notepad'],['calc','Calculator'],['pc','Computer'],['bin','Recycle Bin'],['cp','Control Panel']];
+L.forEach(([k,t])=>{const d=document.createElement('div');d.innerHTML=`<i>${A[k].i}</i>${t}`;d.onclick=()=>open(k);$('#pl').appendChild(d)});
+$('#pl').insertAdjacentHTML('beforeend','<hr><div>All Programs</div>');
+[['docs','Documents'],['pics','Pictures'],['music','Music'],['pc','Computer'],['cp','Control Panel']].forEach(([k,t])=>{const d=document.createElement('div');d.textContent=t;d.onclick=()=>open(k);$('#pr').appendChild(d)});
+function sm(v){$('#sm').classList.toggle('open',v);$('#orb').classList.toggle('on',v)}
+$('#orb').onclick=e=>{e.stopPropagation();sm(!$('#sm').classList.contains('open'))};
+$('#sm').onclick=e=>e.stopPropagation();
+document.onclick=()=>sm(0);
+$('#show').onclick=()=>{const ws=[...document.querySelectorAll('.win')],all=ws.every(w=>w.style.display=='none');
+ ws.forEach(w=>{w.style.display=all?'':'none';w.classList.remove('on')});document.querySelectorAll('.tk').forEach(t=>t.classList.remove('on'))};
+$('#shut').onclick=()=>{sm(0);const o=$('#off');o.style.display='grid';$('#offt').textContent='Shutting down';
+ setTimeout(()=>{$('#offt').textContent='Click anywhere to start Windows';o.onclick=()=>location.reload()},2200)};
+function tick(){const d=new Date();$('#clk').innerHTML=d.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'})+'<br>'+d.toLocaleDateString('en-GB')}
+tick();setInterval(tick,10000);
+</script>
+</body>
+</html>
