@@ -111,6 +111,36 @@ textarea{flex:1;border:0;outline:0;resize:none;padding:3px;font:13px Consolas,"C
 #boot .lg{grid-template-columns:46px 46px;gap:4px;animation:glow 2.4s infinite}#boot .lg b{height:42px}
 #boot p{margin:30px 0 0;font-size:18px}
 @keyframes glow{50%{filter:brightness(1.7) drop-shadow(0 0 16px #6cf)}}
+.dd{position:fixed;z-index:10002;min-width:170px;padding:3px;background:rgba(246,248,252,.97);color:#000;border:1px solid #979fa8;border-radius:3px;box-shadow:3px 3px 8px rgba(0,0,0,.4)}
+.dd div{padding:4px 24px;border:1px solid transparent;white-space:nowrap}.dd div:hover{background:linear-gradient(#f4f9ff,#d4e6fa);border-color:#a8cdf2}.dd hr{border:0;border-top:1px solid #d8dde4;margin:3px 2px}
+.cb{display:flex;gap:4px;padding:4px 6px;background:linear-gradient(#fafbfd,#e9eef6);border-bottom:1px solid #c4cfdf;flex:none}.cb:empty{display:none}
+.cb button{font:12px "Segoe UI";color:#1e3f73;padding:3px 10px;border:1px solid transparent;border-radius:3px;background:none}.cb button:hover{border-color:#a8cdf2;background:linear-gradient(#f4f9ff,#d4e6fa)}
+.side a{display:block;padding:0 6px;border:1px solid transparent;border-radius:3px;line-height:20px;color:inherit}.side a:hover{background:#e0eefc;border-color:#bcdcf7}.side b a{font-weight:600}
+.fi.sel{background:#cfe5fb;border-color:#7fb4e8}
+.img{width:58px;height:42px;border:3px solid #fff;box-shadow:0 0 0 1px #999;margin-bottom:2px}
+.wb{font:12px "Segoe UI";padding:3px 14px;border:1px solid #707070;border-radius:3px;background:linear-gradient(#f6f6f6 45%,#dcdcdc 50%,#cfcfcf)}
+.wb:hover{border-color:#3c7fb1;background:linear-gradient(#eaf6fd 45%,#bee6fd 50%,#a7d9f5)}.wb.on{background:linear-gradient(#cfe6fb,#9ccbf3);border-color:#3c7fb1}
+.dl{flex:1;display:flex;gap:12px;padding:16px;background:#fff}
+.bt{display:flex;justify-content:flex-end;gap:8px;padding:10px;background:#f0f0f0;border-top:1px solid #dfdfdf;flex:none}
+.dlg .mn,.dlg .mx,.dlg .rz{display:none}.dlg .cl{border-radius:0 0 5px 5px}
+#rb{position:fixed;border:1px solid #7fb4e8;background:rgba(120,180,255,.3);display:none;z-index:5}
+#gad{position:absolute;right:24px;top:16px;width:132px;pointer-events:none;filter:drop-shadow(0 4px 6px rgba(0,0,0,.5))}
+body.si .ic svg{width:28px;height:28px}
+.fl{position:fixed;display:none;z-index:10001;bottom:42px;color:#fff;padding:12px;border:1px solid rgba(255,255,255,.5);background:rgba(25,45,75,.9);backdrop-filter:blur(10px);border-radius:6px 6px 0 0;box-shadow:0 0 18px rgba(0,0,0,.6)}
+.thumb{position:fixed;z-index:10001;bottom:44px;padding:6px 8px;color:#fff;background:rgba(25,45,75,.9);border:1px solid rgba(255,255,255,.5);border-radius:5px;pointer-events:none;box-shadow:0 0 14px rgba(0,0,0,.5)}
+.thumb div{position:relative;overflow:hidden;background:#fff;margin-top:5px}
+.cg .td{color:#fff}
+.ms{background:#c0c0c0;padding:8px;height:100%}
+.msh{display:flex;justify-content:space-between;align-items:center;background:#000;color:#f22;font:700 20px Consolas,monospace;padding:4px 8px;margin-bottom:8px}
+.msg{display:grid;grid-template-columns:repeat(9,24px)}
+.msg i{width:24px;height:24px;font:700 14px Arial;font-style:normal;display:grid;place-items:center;background:#c0c0c0;border:3px outset #f4f4f4}
+.msg i.o{border:1px solid #888;background:#d4d4d4}
+.pt{display:flex;flex-direction:column;height:100%}
+.ptb{display:flex;flex-wrap:wrap;gap:4px;align-items:center;padding:6px;background:linear-gradient(#f9fbfe,#dfe8f4);border-bottom:1px solid #b5c4da;flex:none}
+.pal{display:grid;grid-template-columns:repeat(10,16px);gap:2px;margin:0 6px}.pal i{width:16px;height:16px;border:1px solid #777}
+.cv{flex:1;overflow:auto;background:#aab6c8;padding:6px}.cv canvas{background:#fff;cursor:crosshair;touch-action:none;display:block}
+.cmd{background:#000;color:#ccc;font:13px Consolas,"Courier New",monospace;padding:6px;height:100%;overflow:auto;user-select:text}
+.cmd .o{white-space:pre-wrap}.cmd .ln{display:flex}.cmd input{flex:1;background:none;border:0;color:#ccc;font:inherit;outline:0}
 </style>
 </head>
 <body>
@@ -124,13 +154,12 @@ textarea{flex:1;border:0;outline:0;resize:none;padding:3px;font:13px Consolas,"C
 <div id="bar">
  <div id="orb"><div class="lg"><b style="background:#f25022"></b><b style="background:#7fba00"></b><b style="background:#00a4ef"></b><b style="background:#ffb900"></b></div></div>
  <div id="tasks"></div>
- <div id="tray"><span>&#9650;</span>
-  <svg viewBox="0 0 16 16" width="16" height="16"><path d="M2 13h2V10H2zM6 13h2V7H6zM10 13h2V4h-2z" fill="#fff"/></svg>
-  <svg viewBox="0 0 16 16" width="16" height="16"><path d="M2 6h3l4-3v10l-4-3H2z" fill="#fff"/><path d="M11 5q2 3 0 6" stroke="#fff" fill="none"/></svg>
+ <div id="tray"><svg id="net" viewBox="0 0 16 16" width="16" height="16"><path d="M2 13h2V10H2zM6 13h2V7H6zM10 13h2V4h-2z" fill="#fff"/></svg>
+  <svg id="vol" viewBox="0 0 16 16" width="16" height="16"><path d="M2 6h3l4-3v10l-4-3H2z" fill="#fff"/><path d="M11 5q2 3 0 6" stroke="#fff" fill="none"/></svg>
   <div id="clk"></div><div id="show"></div></div>
 </div>
 <div id="cal"></div>
-<div id="ctx"><div>View</div><div>Sort by</div><div id="rf">Refresh</div><hr><div id="nf">New folder</div><hr><div>Screen resolution</div><div>Gadgets</div><div id="ps">Personalize</div></div>
+<div id="ctx"><div id="vw">View</div><div id="srt">Sort by</div><div id="rf">Refresh</div><hr><div id="nf">New folder</div><hr><div id="res">Screen resolution</div><div id="gd">Gadgets</div><div id="ps">Personalize</div></div>
 <div id="boot"></div>
 <script>
 const $=(s,e=document)=>e.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
@@ -197,7 +226,7 @@ function open(k,o={}){sm(0);const a=A[k](o);n++;
  tb.onpointerdown=e=>{if(e.target.closest('.btns')||w.classList.contains('max'))return;
   const dx=e.clientX-w.offsetLeft,dy=e.clientY-w.offsetTop;tb.setPointerCapture(e.pointerId);
   tb.onpointermove=v=>{w.style.left=v.clientX-dx+'px';w.style.top=Math.max(0,v.clientY-dy)+'px'};
-  tb.onpointerup=()=>tb.onpointermove=null};
+  tb.onpointerup=e=>{tb.onpointermove=null;const x=e.clientX,y=e.clientY;if(y<4)w.classList.add('max');else if(x<6||x>innerWidth-6){w.classList.remove('max');w.style.top='0';w.style.height=innerHeight-40+'px';w.style.width=innerWidth/2+'px';w.style.left=x<6?'0':innerWidth/2+'px'}}};
  const rz=$('.rz',w);rz.onpointerdown=e=>{e.stopPropagation();focus(w);rz.setPointerCapture(e.pointerId);const x=e.clientX,y=e.clientY,ow=w.offsetWidth,oh=w.offsetHeight;
   rz.onpointermove=v=>{w.style.width=Math.max(300,ow+v.clientX-x)+'px';w.style.height=Math.max(180,oh+v.clientY-y)+'px'};rz.onpointerup=()=>rz.onpointermove=null};
  a.init&&a.init(w);focus(w)}
@@ -205,7 +234,7 @@ function open(k,o={}){sm(0);const a=A[k](o);n++;
 const rows=()=>Math.max(1,Math.floor((innerHeight-60)/92));
 function addIcon(k,name){const i=$$('.ic').length,d=document.createElement('div');d.className='ic';
  d.style.left=6+Math.floor(i/rows())*80+'px';d.style.top=6+i%rows()*92+'px';d.innerHTML=ico(k=='fld'?'folder':k,40)+`<span>${name}</span>`;
- d.onclick=e=>e.stopPropagation();d.ondblclick=()=>open(k,{n:name});
+ d.dataset.k=k;d.dataset.n=name;d.onclick=e=>e.stopPropagation();d.ondblclick=()=>open(d.dataset.k,{n:d.dataset.n});
  d.onpointerdown=e=>{e.stopPropagation();$$('.ic').forEach(x=>x.classList.remove('sel'));d.classList.add('sel');
   const ox=e.clientX-d.offsetLeft,oy=e.clientY-d.offsetTop;let mv=0;d.setPointerCapture(e.pointerId);
   d.onpointermove=v=>{if(!mv&&Math.hypot(v.clientX-e.clientX,v.clientY-e.clientY)<5)return;mv=1;d.style.left=v.clientX-ox+'px';d.style.top=v.clientY-oy+'px';d.style.opacity=.7};
@@ -218,7 +247,6 @@ $('#desk').oncontextmenu=e=>{e.preventDefault();if(e.target.closest('.win'))retu
 $('#rf').onclick=()=>{$('#icons').style.opacity=0;setTimeout(()=>$('#icons').style.opacity=1,120)};
 $('#nf').onclick=()=>addIcon('fld','New folder');
 $('#ps').onclick=()=>open('pers');
-$('#desk').onclick=()=>{$$('.ic').forEach(x=>x.classList.remove('sel'))};
 document.onclick=hideAll;
 // start menu
 const PR=[['ie','Internet Explorer'],['np','Notepad'],['calc','Calculator'],['pc','Computer'],['cp','Control Panel'],['pers','Personalization']];
@@ -247,6 +275,164 @@ function boot(){const b=$('#boot');b.className='';b.style.opacity=1;b.style.poin
 $('#shut').onclick=()=>{hideAll();const b=$('#boot');b.style.opacity=1;b.style.pointerEvents='auto';b.className='b2';b.innerHTML='Shutting down';
  setTimeout(()=>{b.className='';b.innerHTML='<p style="opacity:.6;font-size:15px">Click anywhere to start Windows</p>';b.onclick=()=>location.reload()},2200)};
 boot();
+</script>
+<script>
+// ===== Part 2: more apps, real navigation, menus =====
+Object.assign(I,{
+paint:'<rect x="3" y="5" width="26" height="22" rx="3" fill="#fff" stroke="#6d8aa5"/><circle cx="11" cy="12" r="3" fill="#e63946"/><circle cx="19" cy="11" r="3" fill="#2d8ee8"/><circle cx="21" cy="19" r="3" fill="#3bb54a"/><path d="M6 24l8-6" stroke="#8a5a2b" stroke-width="3"/>',
+ms:'<rect x="4" y="4" width="24" height="24" rx="3" fill="#c0c7d0" stroke="#59616b"/><circle cx="16" cy="16" r="6" fill="#222"/><path d="M16 7v18M7 16h18M10 10l12 12M22 10L10 22" stroke="#222" stroke-width="2"/>',
+cmd:'<rect x="3" y="5" width="26" height="22" rx="2" fill="#111" stroke="#777"/><path d="M7 12l5 4-5 4M14 21h8" stroke="#ddd" stroke-width="2" fill="none"/>',
+sticky:'<path d="M4 4h24v18l-6 6H4z" fill="#ffe86b" stroke="#c9a722"/><path d="M22 28v-6h6z" fill="#e0c13c"/>',
+img:'<rect x="3" y="6" width="26" height="20" fill="#fff" stroke="#6d8aa5"/><path d="M5 24l7-8 5 5 4-4 6 7z" fill="#5aa05a"/><circle cx="22" cy="12" r="2.5" fill="#ffd447"/>',
+task:'<rect x="4" y="5" width="24" height="22" fill="#fff" stroke="#6d8aa5"/><path d="M6 22l5-6 4 3 5-9 6 6" stroke="#2a8f3c" fill="none" stroke-width="2"/>',
+help:'<circle cx="16" cy="16" r="12" fill="#2d8ee8"/><text x="16" y="22" font-size="18" font-weight="700" text-anchor="middle" fill="#fff" font-family="Segoe UI,Arial">?</text>',
+dt:'<circle cx="16" cy="16" r="12" fill="#fff" stroke="#46698f" stroke-width="2"/><path d="M16 8v8l5 3" stroke="#333" stroke-width="2" fill="none"/>'});
+const PICS=[['Desert','linear-gradient(#7ec8ff 45%,#e9b46a 45% 70%,#b9722f)'],['Koala','linear-gradient(#a9d58a,#5f8f4a 60%,#8a8a8a 60%)'],['Tulips','linear-gradient(#9fd4ff 35%,#4f9a3f 35% 60%,#e0457b 60%)'],['Jellyfish','radial-gradient(circle at 50% 40%,#ff9ad5,#5a3fb0 35%,#0a1b4d 70%)']];
+const FD=(...n)=>n.map(x=>['folder','dir',x]);
+const DIR={'Local Disk (C:)':FD('PerfLogs','Program Files','Users','Windows'),Users:FD('User','Public'),User:FD('Desktop','Downloads','Documents','Music','Pictures','Videos'),
+Libraries:FD('Documents','Music','Pictures','Videos'),Documents:[['txt','txt','Read me.txt']],Pictures:PICS.map(p=>['img','img',p[0]+'.jpg']),
+'Program Files':FD('Internet Explorer','Windows Media Player'),Windows:FD('System32','Fonts'),Games:[['ms','app','ms','Minesweeper']],'Recycle Bin':[],
+'Control Panel':[['pc','app','sys','System and Security'],['cp','app','pers','Appearance and Personalization'],['dt','app','dt','Clock, Language, and Region'],['cp','dir','Devices and Printers','Hardware and Sound']],
+'Devices and Printers':[['pc','app','sys','USER-PC']],Network:[['pc','app','sys','USER-PC']]};
+const PAR={};Object.entries({Computer:['Local Disk (C:)'],'Local Disk (C:)':['PerfLogs','Program Files','Users','Windows'],Users:['User','Public'],User:['Desktop','Downloads'],Libraries:['Documents','Music','Pictures','Videos'],Windows:['System32','Fonts'],'Control Panel':['Devices and Printers']}).forEach(([p,k])=>k.forEach(x=>PAR[x]=p));
+const crumb=n=>(PAR[n]?crumb(PAR[n])+' &#9656; ':'')+n;
+const S=x=>`<a data-go="${x}">${x}</a>`;
+const SIDE='<b>Favorites</b>'+S('Desktop')+S('Downloads')+S('Recent Places')+'<b>Libraries</b>'+S('Documents')+S('Music')+S('Pictures')+S('Videos')+'<b><a data-go="Computer">Computer</a></b>'+S('Local Disk (C:)')+'<b><a data-go="Network">Network</a></b>';
+const it=(i,a,x,l)=>`<div class="fi" data-a="${a}" data-n="${x}">${i=='img'?`<div class="img" style="background:${(PICS.find(p=>p[0]+'.jpg'==x)||[0,'#ccc'])[1]}"></div>`:ico(i,40)}<span>${l||x}</span></div>`;
+function view(n){
+ if(n=='Computer')return `<h4>Hard Disk Drives (1)</h4><div class="drv fi" data-a="dir" data-n="Local Disk (C:)">${ico('disk',40)}<div style="text-align:left">Local Disk (C:)<u><s></s></u><small>88.4 GB free of 232 GB</small></div></div><h4>Devices with Removable Storage (1)</h4><div class="drv" data-a="msg" data-n="Please insert a disc into drive D:.">${ico('dvd',40)}<div>DVD RW Drive (D:)</div></div>`;
+ const d=DIR[n]||[];return d.length?d.map(([i,a,x,l])=>it(i,a,x,l)).join(''):'<h4>This folder is empty.</h4>'}
+function go(w,n,p=1){
+ if(p){w._h=w._h.slice(0,w._i+1);w._h.push(n);w._i++}
+ const c=w._h[w._i];$('.main',w).innerHTML=view(c);$('.ad',w).innerHTML=crumb(c);$('.tt',w).textContent=c;
+ $('.cb',w).innerHTML=c=='Recycle Bin'?'<button data-c="emp">Empty the Recycle Bin</button>':['Computer','Control Panel','Network','Devices and Printers'].includes(c)?'':'<button data-c="nf">New folder</button>';
+ $('.bk',w).style.opacity=w._i?1:.4;$('.fw',w).style.opacity=w._i<w._h.length-1?1:.4}
+function act(f,w){const a=f.dataset.a,n=f.dataset.n;
+ if(a=='dir')w?go(w,n):open('fld',{n});else if(a=='txt')open('np',{n});else if(a=='img')open('photo',{n});else if(a=='app')open(n);else if(a=='msg')open('msg',{m:n})}
+const expl=(n,i)=>({t:n,i:i||'folder',w:700,h:430,html:'<div class="ex"><div class="addr"><em class="bk">&#9664;</em><em class="fw">&#9654;</em><span class="ad"></span></div><div class="cb"></div><div class="exm"><div class="side">'+SIDE+'</div><div class="main"></div></div></div>',
+ init(w){w._h=[n];w._i=0;go(w,0,0);
+  w.addEventListener('click',e=>{const t=e.target.closest('em,a,button,.main .fi,.main .drv');if(!t)return;const c=w._h[w._i];
+   if(t.matches('.bk')){if(w._i){w._i--;go(w,0,0)}}
+   else if(t.matches('.fw')){if(w._i<w._h.length-1){w._i++;go(w,0,0)}}
+   else if(t.dataset.go)go(w,t.dataset.go);
+   else if(t.dataset.c=='nf'){let x='New folder',k=2;while((DIR[c]||[]).some(y=>y[2]==x))x='New folder ('+(k++)+')';(DIR[c]=DIR[c]||[]).push(['folder','dir',x]);DIR[x]=[];PAR[x]=c;go(w,0,0)}
+   else if(t.dataset.c=='emp'){DIR['Recycle Bin']=[];go(w,0,0)}
+   else if(t.matches('.fi,.drv')){$$('.fi.sel').forEach(x=>x.classList.remove('sel'));t.classList.add('sel')}});
+  w.addEventListener('dblclick',e=>{const f=e.target.closest('.main [data-a]');if(f)act(f,w)})}});
+A.pc=()=>expl('Computer','pc');A.fld=o=>expl(o.n,'folder');A.bin=()=>expl('Recycle Bin','bin');A.cp=()=>expl('Control Panel','cp');
+// dialogs
+const msg=(m,t,ic)=>open('msg',{m,t,ic});
+const ask=(t,l,d,cb)=>open('ask',{t,l,d,cb});
+const ctr=w=>{w.classList.add('dlg');w.style.left=(innerWidth-w.offsetWidth)/2+'px';w.style.top=(innerHeight-40-w.offsetHeight)/3+'px'};
+A.msg=o=>({t:o.t||'Windows',i:o.ic||'help',w:380,h:170,html:`<div class="dl">${ico(o.ic||'help',32)}<div>${o.m}</div></div><div class="bt"><button class="wb ok">OK</button></div>`,init(w){ctr(w);$('.ok',w).onclick=()=>$('.cl',w).click()}});
+A.ask=o=>({t:o.t,i:'np',w:380,h:180,html:`<div class="dl" style="display:block">${o.l}<input style="width:100%;margin-top:8px;padding:4px;border:1px solid #8aa" value="${o.d}"></div><div class="bt"><button class="wb ok">OK</button><button class="wb ca">Cancel</button></div>`,
+ init(w){ctr(w);const i=$('input',w),ok=()=>{o.cb(i.value.trim()||o.d);$('.cl',w).click()};setTimeout(()=>{i.focus();i.select()},30);$('.ok',w).onclick=ok;i.onkeydown=e=>e.key=='Enter'&&ok();$('.ca',w).onclick=()=>$('.cl',w).click()}});
+function pop(e,items){$$('.dd').forEach(x=>x.remove());const m=document.createElement('div');m.className='dd';
+ items.forEach(x=>{if(x=='-')return m.appendChild(document.createElement('hr'));const d=document.createElement('div');d.textContent=x[0];d.onclick=x[1];m.appendChild(d)});
+ document.body.appendChild(m);m.style.left=Math.min(e.clientX,innerWidth-m.offsetWidth-4)+'px';m.style.top=Math.min(e.clientY,innerHeight-m.offsetHeight-44)+'px'}
+document.addEventListener('click',()=>$$('.fl,.dd').forEach(x=>x.className=='dd'?x.remove():x.style.display='none'));
+// notepad menus
+document.addEventListener('click',e=>{const s=e.target.closest('.menu span');if(!s)return;e.stopPropagation();
+ const w=s.closest('.win'),ta=$('textarea',w),r=s.getBoundingClientRect(),nm=()=>$('.tt',w).textContent.replace(' - Notepad',''),
+ sv=()=>ask('Save As','File name:',nm()=='Untitled'?'Untitled.txt':nm(),v=>{TXT[v]=ta.value;if(!DIR.Documents.some(x=>x[2]==v))DIR.Documents.push(['txt','txt',v]);$('.tt',w).textContent=v+' - Notepad'}),
+ zm=d=>ta.style.fontSize=parseInt(getComputedStyle(ta).fontSize)+d+'px';
+ const M={File:[['New',()=>{ta.value='';$('.tt',w).textContent='Untitled - Notepad'}],['Open...',()=>{const f=document.createElement('input');f.type='file';f.accept='.txt,text/*';f.onchange=()=>{const fr=new FileReader();fr.onload=()=>{ta.value=fr.result;$('.tt',w).textContent=f.files[0].name+' - Notepad'};fr.readAsText(f.files[0])};f.click()}],['Save',sv],['Save As...',sv],['Download to your PC',()=>{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([ta.value]));a.download=nm()+(nm().includes('.')?'':'.txt');a.click()}],'-',['Exit',()=>$('.cl',w).click()]],
+ Edit:[['Select All',()=>{ta.focus();ta.select()}],['Time/Date',()=>{ta.setRangeText(new Date().toLocaleString('en-GB'),ta.selectionStart,ta.selectionEnd,'end');ta.focus()}]],
+ Format:[['Word Wrap',()=>ta.wrap=ta.wrap=='off'?'soft':'off']],View:[['Zoom in',()=>zm(2)],['Zoom out',()=>zm(-2)]],
+ Help:[['About Notepad',()=>msg('Windows 7 Notepad replica, running in your browser.','About Notepad','np')]]};
+ pop({clientX:r.left,clientY:r.bottom},M[s.textContent])},true);
+// context menus: explorer items, title bars, desktop icons, taskbar
+document.addEventListener('contextmenu',e=>{const T=e.target,f=T.closest('.main [data-a]'),tb=T.closest('.tb'),ic=T.closest('.ic'),bar=T.closest('#bar')&&!T.closest('.tk'),w=T.closest('.win');
+ if(f){hideAll();const c=w._h[w._i],arr=DIR[c]||[],ix=arr.findIndex(y=>y[2]==f.dataset.n),ro=ix<0;
+  pop(e,[['Open',()=>act(f,w)],'-',['Delete',()=>{if(ro)return;const x=arr.splice(ix,1)[0];if(c!='Recycle Bin')DIR['Recycle Bin'].push(x);go(w,0,0)}],['Rename',()=>{if(ro)return;ask('Rename','New name:',f.dataset.n,v=>{const o=arr[ix][2];arr[ix][2]=v;if(TXT[o]!=null)TXT[v]=TXT[o];if(DIR[o]){DIR[v]=DIR[o];PAR[v]=PAR[o]}go(w,0,0)})}]])}
+ else if(tb&&!tb.closest('.dlg')){hideAll();pop(e,[['Restore',()=>w.classList.remove('max')],['Minimize',()=>mn(w)],['Maximize',()=>w.classList.add('max')],'-',['Close',()=>$('.cl',w).click()]])}
+ else if(ic){hideAll();const k=ic.dataset.k;pop(e,[['Open',()=>open(k,{n:ic.dataset.n})],...(k=='pc'?[['Properties',()=>open('sys')]]:[]),'-',['Rename',()=>ask('Rename','New name:',ic.dataset.n,v=>{ic.dataset.n=v;$('span',ic).textContent=v})],['Delete',()=>{if(k=='pc'||k=='bin')return msg('This item can\'t be deleted.','Windows','cp');DIR['Recycle Bin'].push(['folder','dir',ic.dataset.n]);ic.remove()}]])}
+ else if(bar){hideAll();pop(e,[['Cascade windows',()=>$$('.win').forEach((x,i)=>{x.classList.remove('max');x.style.left=30+i*30+'px';x.style.top=20+i*30+'px'})],['Show the desktop',()=>$('#show').click()],'-',['Start Task Manager',()=>open('task')]])}
+ else return;e.preventDefault();e.stopPropagation()},true);
+// desktop menu actions
+$('#vw').onclick=()=>document.body.classList.toggle('si');
+$('#srt').onclick=()=>$$('.ic').sort((a,b)=>$('span',a).textContent.localeCompare($('span',b).textContent)).forEach((d,i)=>{d.style.left=6+Math.floor(i/rows())*80+'px';d.style.top=6+i%rows()*92+'px'});
+$('#res').onclick=()=>open('res');
+$('#gd').onclick=()=>{const g=$('#gad');g.style.display=g.style.display=='none'?'':'none'};
+// rubber band selection
+const rb=document.createElement('div');rb.id='rb';document.body.appendChild(rb);
+$('#desk').addEventListener('pointerdown',e=>{if(e.button||(e.target.id!='desk'&&e.target.id!='icons'))return;const x0=e.clientX,y0=e.clientY;$$('.ic').forEach(i=>i.classList.remove('sel'));rb.style.display='block';
+ const mv=v=>{const l=Math.min(x0,v.clientX),t=Math.min(y0,v.clientY),w=Math.abs(v.clientX-x0),h=Math.abs(v.clientY-y0);Object.assign(rb.style,{left:l+'px',top:t+'px',width:w+'px',height:h+'px'});
+  $$('.ic').forEach(i=>{const r=i.getBoundingClientRect();i.classList.toggle('sel',r.left<l+w&&r.right>l&&r.top<t+h&&r.bottom>t)})},
+ up=()=>{rb.style.display='none';removeEventListener('pointermove',mv);removeEventListener('pointerup',up)};addEventListener('pointermove',mv);addEventListener('pointerup',up)});
+// clock gadget + analog clocks
+const CLK=()=>{let t='';for(let i=0;i<12;i++)t+=`<line x1="50" y1="9" x2="50" y2="${i%3?13:16}" stroke="#fff" stroke-width="${i%3?1:2}" transform="rotate(${i*30} 50 50)"/>`;
+ return `<svg class="cs" viewBox="0 0 100 100"><defs><radialGradient id="cg" cx=".4" cy=".3"><stop offset="0" stop-color="#5b6c80"/><stop offset="1" stop-color="#10161f"/></radialGradient></defs><circle cx="50" cy="50" r="48" fill="url(#cg)" stroke="#9fb4cc" stroke-width="2"/>${t}<line class="hh" x1="50" y1="50" x2="50" y2="26" stroke="#fff" stroke-width="3" stroke-linecap="round"/><line class="mh" x1="50" y1="50" x2="50" y2="16" stroke="#fff" stroke-width="2" stroke-linecap="round"/><line class="sh" x1="50" y1="54" x2="50" y2="12" stroke="#f55" stroke-width="1"/><circle cx="50" cy="50" r="3" fill="#f55"/></svg>`};
+const gad=document.createElement('div');gad.id='gad';gad.innerHTML=CLK();$('#desk').appendChild(gad);
+const hands=()=>$$('.cs').forEach(s=>{const d=new Date(),a=[d.getHours()%12*30+d.getMinutes()/2,d.getMinutes()*6,d.getSeconds()*6];['hh','mh','sh'].forEach((c,i)=>$('.'+c,s).setAttribute('transform',`rotate(${a[i]} 50 50)`))});
+hands();setInterval(hands,1000);
+const calHTML=()=>{const d=new Date(),y=d.getFullYear(),m=d.getMonth(),f=(new Date(y,m,1).getDay()+6)%7,n=new Date(y,m+1,0).getDate();let h=`<div class="ch">${d.toLocaleDateString('en-GB',{month:'long',year:'numeric'})}</div><div class="cg">`+['M','T','W','T','F','S','S'].map(x=>`<b>${x}</b>`).join('')+'<i></i>'.repeat(f);for(let i=1;i<=n;i++)h+=`<i${i==d.getDate()?' class="td"':''}>${i}</i>`;return h+'</div>'};
+// tray flyouts
+const beep=()=>{const a=new AudioContext(),o=a.createOscillator(),g=a.createGain();g.gain.value=$('#mt').checked?0:$('#vs').value/300;o.frequency.value=660;o.connect(g);g.connect(a.destination);o.start();o.stop(a.currentTime+.25)};
+const mkfl=(ref,html)=>{const f=document.createElement('div');f.className='fl';f.innerHTML=html;document.body.appendChild(f);f.onclick=e=>e.stopPropagation();
+ $(ref).addEventListener('click',e=>{e.stopPropagation();const o=f.style.display=='block';hideAll();$$('.fl').forEach(x=>x.style.display='none');if(!o){f.style.display='block';f.style.left=Math.max(4,Math.min(e.clientX-f.offsetWidth/2,innerWidth-f.offsetWidth-4))+'px'}})};
+mkfl('#net','<b>Currently connected to:</b><div style="margin-top:8px">&#9679; Network<br><small style="opacity:.75">Internet access</small></div>');
+mkfl('#vol','<div style="text-align:center;line-height:2">Speakers<br><input type="range" id="vs" value="60" style="width:120px"><br><label><input type="checkbox" id="mt"> Mute</label><br><button class="wb" id="tst">Test sound</button></div>');
+$('#mt').onchange=e=>$('#vol').style.opacity=e.target.checked?.35:1;$('#tst').onclick=beep;
+// more apps
+A.photo=o=>({t:'Windows Photo Viewer',i:'img',w:640,h:470,html:'<div class="pv" style="flex:1"></div><div class="bt" style="justify-content:center"><button class="wb" data-d="-1">&#9664; Previous</button><button class="wb" data-d="1">Next &#9654;</button></div>',
+ init(w){let i=Math.max(0,PICS.findIndex(p=>p[0]+'.jpg'==o.n));const s=()=>{$('.pv',w).style.background=PICS[i][1];$('.tt',w).textContent=PICS[i][0]+'.jpg - Windows Photo Viewer'};s();
+  w.querySelectorAll('[data-d]').forEach(b=>b.onclick=()=>{i=(i+ +b.dataset.d+PICS.length)%PICS.length;s()})}});
+A.sticky=()=>({t:'Sticky Notes',i:'sticky',w:240,h:240,html:'<textarea style="background:#fff3a0;font:15px \'Segoe Print\',\'Comic Sans MS\',cursive" placeholder="Type your note here"></textarea>'});
+A.res=()=>({t:'Screen Resolution',i:'cp',w:420,h:240,html:`<div style="padding:18px;flex:1;background:#fff;line-height:2">Display: Generic PnP Monitor<br>Resolution: <b>${innerWidth} &times; ${innerHeight}</b><br>Orientation: ${innerWidth>innerHeight?'Landscape':'Portrait'}<br>Colour depth: ${screen.colorDepth}-bit</div>`});
+A.sys=()=>({t:'System',i:'pc',w:640,h:440,html:`<div style="padding:18px;flex:1;overflow:auto;background:#fff;line-height:1.9"><div style="display:flex;justify-content:space-between"><h2 style="font-weight:400;color:#1e3287;margin:0">View basic information about your computer</h2><div class="lg" style="grid-template-columns:30px 30px;margin:6px 14px">${LG.replace('<div class="lg">','').replace(/<\/div>$/,'')}</div></div><h4 style="color:#1e3287;border-bottom:1px solid #d3dcea;font-weight:400">Windows edition</h4>Windows 7 Ultimate<br>Copyright &copy; 2009 Microsoft Corporation. All rights reserved.<br>Service Pack 1<h4 style="color:#1e3287;border-bottom:1px solid #d3dcea;font-weight:400">System</h4>Rating: <b>7.1</b> Windows Experience Index<br>Processor: ${navigator.hardwareConcurrency||4} logical processors<br>Installed memory (RAM): ${navigator.deviceMemory||4}.00 GB<br>System type: 64-bit Operating System<h4 style="color:#1e3287;border-bottom:1px solid #d3dcea;font-weight:400">Computer name and activation</h4>Computer name: USER-PC<br>Windows is activated</div>`});
+A.dt=()=>({t:'Date and Time',i:'dt',w:500,h:330,html:`<div style="display:flex;gap:24px;padding:20px;background:#fff;flex:1"><div style="width:230px;color:#000">${calHTML()}</div><div style="width:150px">${CLK()}<p style="text-align:center">${new Date().toLocaleTimeString('en-GB')}</p></div></div>`,init:hands});
+A.help=()=>({t:'Windows Help and Support',i:'help',w:560,h:380,html:'<div style="padding:20px;flex:1;background:#fff;line-height:1.7"><h2 style="color:#1e3287;font-weight:400;margin:0 0 8px">Windows Help and Support</h2>Tips for this replica:<ul><li>Double-click folders to browse, and use the arrows to go back and forward</li><li>Right-click files, desktop icons, the taskbar and title bars</li><li>Drag a window to the left or right edge to snap it, or to the top to maximize</li><li>Hover taskbar buttons for previews, and the far-right strip to peek at the desktop</li><li>Try Paint, Minesweeper and Command Prompt from the Start menu</li></ul></div>'});
+A.task=()=>({t:'Windows Task Manager',i:'task',w:420,h:380,html:'<div class="tl" style="flex:1;overflow:auto;background:#fff"></div><div class="bt"><button class="wb">End Task</button></div>',init(w){let s=-1;const L=()=>$$('.win').filter(x=>x!=w),
+ r=()=>{$('.tl',w).innerHTML='<div style="padding:4px 8px;background:#f0f0f0;border-bottom:1px solid #ddd">Applications</div>'+L().map((x,i)=>`<div data-i="${i}" style="padding:4px 8px;${i==s?'background:#3399ff;color:#fff':''}">${$('.tt',x).textContent}</div>`).join('')};
+ w.addEventListener('click',e=>{const d=e.target.closest('[data-i]');if(d){s=+d.dataset.i;r()}});
+ $('.bt button',w).onclick=()=>{const x=L()[s];if(x){$('.cl',x).click();s=-1;setTimeout(r,200)}};r();const iv=setInterval(()=>w.isConnected?r():clearInterval(iv),1000)}});
+A.cmd=()=>({t:'C:\\Windows\\system32\\cmd.exe',i:'cmd',w:640,h:380,html:'<div class="cmd"><div class="o"></div><div class="ln">C:\\Users\\User&gt;<input spellcheck="false"></div></div>',init(w){
+ const o=$('.o',w),i=$('input',w),cm=$('.cmd',w),AP={notepad:'np',calc:'calc',paint:'paint',mspaint:'paint',explorer:'pc',winmine:'ms',iexplore:'ie',taskmgr:'task',cmd:'cmd'};
+ o.textContent='Microsoft Windows [Version 6.1.7601]\nCopyright (c) 2009 Microsoft Corporation.  All rights reserved.\n\n';cm.onclick=()=>i.focus();setTimeout(()=>i.focus(),50);
+ i.onkeydown=e=>{if(e.key!='Enter')return;const l=i.value.trim(),[c,...a]=l.split(/\s+/),x=a.join(' ');i.value='';o.textContent+='C:\\Users\\User>'+l+'\n';
+  const C={help:'Commands: help, cls, echo, dir, ver, date, time, whoami, hostname, ipconfig, ping, start, exit\n',ver:'\nMicrosoft Windows [Version 6.1.7601]\n',date:'The current date is: '+new Date().toLocaleDateString('en-GB')+'\n',time:'The current time is: '+new Date().toLocaleTimeString('en-GB')+'\n',whoami:'user-pc\\user\n',hostname:'USER-PC\n',echo:x+'\n',
+   ipconfig:'\nWindows IP Configuration\n\nEthernet adapter Local Area Connection:\n\n   IPv4 Address. . . . . . . . . . . : 192.168.1.23\n   Default Gateway . . . . . . . . . : 192.168.1.1\n\n',
+   ping:'\nPinging '+(x||'localhost')+' with 32 bytes of data:\n'+'Reply: bytes=32 time=12ms TTL=117\n'.repeat(4)+'\n',
+   dir:'\n Directory of C:\\Users\\User\n\n'+DIR.User.map(y=>'<DIR>          '+y[2]).join('\n')+'\n\n'};
+  if(!l);else if(c=='cls')o.textContent='';else if(c=='exit')$('.cl',w).click();else if(c=='start'&&AP[x.toLowerCase()])open(AP[x.toLowerCase()]);else if(C[c.toLowerCase()]!=null)o.textContent+=C[c.toLowerCase()];
+  else o.textContent+="'"+c+"' is not recognized as an internal or external command,\noperable program or batch file.\n\n";cm.scrollTop=1e6}}});
+A.paint=()=>({t:'untitled - Paint',i:'paint',w:740,h:500,html:'<div class="pt"><div class="ptb"><button class="wb on" data-t="pen">Pencil</button><button class="wb" data-t="brush">Brush</button><button class="wb" data-t="eraser">Eraser</button><button class="wb" data-t="line">Line</button><button class="wb" data-t="rect">Rectangle</button><button class="wb" data-t="fill">Fill</button><select class="sz"><option>2</option><option selected>5</option><option>10</option><option>20</option></select><span class="pal"></span><button class="wb" data-t="new">New</button><button class="wb" data-t="save">Save</button></div><div class="cv"><canvas width="900" height="600"></canvas></div></div>',
+ init(w){const cv=$('canvas',w),c=cv.getContext('2d'),W=900,H=600;let tool='pen',col='#000000',d=0,sx,sy,snap;c.fillStyle='#fff';c.fillRect(0,0,W,H);c.lineCap=c.lineJoin='round';
+  ['#000000','#7f7f7f','#880015','#ed1c24','#ff7f27','#fff200','#22b14c','#00a2e8','#3f48cc','#a349a4','#ffffff','#c3c3c3','#b97a57','#ffaec9','#ffc90e','#efe4b0','#b5e61d','#99d9ea','#7092be','#c8bfe7'].forEach(k=>{const s=document.createElement('i');s.style.background=k;s.onclick=()=>col=k;$('.pal',w).appendChild(s)});
+  w.querySelectorAll('[data-t]').forEach(b=>b.onclick=()=>{const t=b.dataset.t;if(t=='new'){c.fillStyle='#fff';c.fillRect(0,0,W,H)}else if(t=='save'){const a=document.createElement('a');a.href=cv.toDataURL();a.download='untitled.png';a.click()}else{tool=t;w.querySelectorAll('[data-t]').forEach(x=>x.classList.toggle('on',x==b))}});
+  const pos=e=>{const r=cv.getBoundingClientRect();return[(e.clientX-r.left)*W/r.width|0,(e.clientY-r.top)*H/r.height|0]};
+  const fill=(x,y)=>{const D=c.getImageData(0,0,W,H),p=D.data,i0=(y*W+x)*4,t=[p[i0],p[i0+1],p[i0+2]],R=parseInt(col.slice(1,3),16),G=parseInt(col.slice(3,5),16),B=parseInt(col.slice(5,7),16);if(t[0]==R&&t[1]==G&&t[2]==B)return;
+   const st=[y*W+x];while(st.length){const i=st.pop(),o=i*4;if(p[o]!=t[0]||p[o+1]!=t[1]||p[o+2]!=t[2])continue;p[o]=R;p[o+1]=G;p[o+2]=B;const X=i%W;if(X>0)st.push(i-1);if(X<W-1)st.push(i+1);if(i>=W)st.push(i-W);if(i<W*(H-1))st.push(i+W)}c.putImageData(D,0,0)};
+  cv.onpointerdown=e=>{[sx,sy]=pos(e);if(tool=='fill')return fill(sx,sy);d=1;cv.setPointerCapture(e.pointerId);snap=c.getImageData(0,0,W,H);const s=+$('.sz',w).value;
+   c.strokeStyle=tool=='eraser'?'#fff':col;c.lineWidth=tool=='pen'?1:tool=='eraser'?s*3:tool=='brush'?s*1.6:s;
+   if('pen brush eraser'.includes(tool)){c.beginPath();c.moveTo(sx,sy);c.lineTo(sx+.1,sy);c.stroke()}};
+  cv.onpointermove=e=>{if(!d)return;const[x,y]=pos(e);if(tool=='line'||tool=='rect'){c.putImageData(snap,0,0);c.beginPath();if(tool=='line'){c.moveTo(sx,sy);c.lineTo(x,y)}else c.rect(sx,sy,x-sx,y-sy);c.stroke()}else{c.lineTo(x,y);c.stroke()}};
+  cv.onpointerup=()=>d=0}});
+A.ms=()=>({t:'Minesweeper',i:'ms',w:262,h:350,html:'<div class="ms"><div class="msh"><span class="mc">010</span><button class="wb sm" style="padding:0 8px;font-size:18px">&#128578;</button><span class="tm">000</span></div><div class="msg"></div></div>',init(w){
+ const g=$('.msg',w),R=9,N=10,pad=v=>String(Math.max(0,v)).padStart(3,'0');let cells,over,first,t,tm,fl;
+ const nb=i=>{const x=i%R,y=i/R|0,o=[];for(let a=-1;a<2;a++)for(let b=-1;b<2;b++){const X=x+a,Y=y+b;if((a||b)&&X>=0&&X<R&&Y>=0&&Y<R)o.push(Y*R+X)}return o};
+ function end(win){over=1;clearInterval(tm);$('.sm',w).innerHTML=win?'&#128526;':'&#128565;';cells.forEach(c=>{if(c.m&&!c.o&&!win)c.e.innerHTML='&#128163;'})}
+ function dig(i){const c=cells[i];if(over||c.o||c.f)return;
+  if(first){first=0;let k=0;while(k<N){const j=Math.random()*81|0;if(j!=i&&!cells[j].m){cells[j].m=1;k++}}tm=setInterval(()=>{if(!w.isConnected)return clearInterval(tm);t++;$('.tm',w).textContent=pad(t)},1000)}
+  const st=[i];while(st.length){const j=st.pop(),d=cells[j];if(d.o||d.f)continue;d.o=1;d.e.className='o';
+   if(d.m){d.e.style.background='#f55';end(0);return}
+   const nn=nb(j),m=nn.filter(x=>cells[x].m).length;if(m){d.e.textContent=m;d.e.style.color=['','#00f','#080','#f00','#008','#800','#088','#000','#888'][m]}else st.push(...nn)}
+  if(cells.filter(c=>c.o).length==R*R-N)end(1)}
+ function reset(){clearInterval(tm);t=0;first=1;over=0;fl=0;cells=Array.from({length:R*R},()=>({m:0,o:0,f:0}));$('.tm',w).textContent='000';$('.mc',w).textContent=pad(N);$('.sm',w).innerHTML='&#128578;';g.innerHTML='';
+  cells.forEach((c,i)=>{const e=document.createElement('i');c.e=e;e.onclick=()=>dig(i);e.oncontextmenu=v=>{v.preventDefault();if(over||c.o)return;c.f=!c.f;fl+=c.f?1:-1;e.innerHTML=c.f?'&#128681;':'';$('.mc',w).textContent=pad(N-fl)};g.appendChild(e)})}
+ $('.sm',w).onclick=reset;reset()}});
+// start menu additions
+PR.splice(2,0,['paint','Paint']);PR.push(['ms','Minesweeper'],['cmd','Command Prompt'],['sticky','Sticky Notes'],['help','Help and Support']);
+$('#pr').insertAdjacentHTML('beforeend','<div data-k="fld" data-n="Games">Games</div><div data-k="help">Help and Support</div>');
+// aero thumbnails
+const th=()=>$$('.thumb').forEach(x=>x.remove());
+$('#tasks').addEventListener('pointerenter',e=>{const t=e.target;if(!t.classList||!t.classList.contains('tk')||!t.w)return;th();
+ const w=t.w,ww=parseInt(w.style.width)||w.offsetWidth||600,hh=parseInt(w.style.height)||w.offsetHeight||400,s=Math.min(190/ww,120/hh),c=w.cloneNode(true);
+ c.style.cssText=`position:absolute;left:0;top:0;width:${ww}px;height:${hh}px;transform-origin:0 0;transform:scale(${s});animation:none;display:flex;opacity:1;max-height:none;z-index:0`;c.classList.remove('on','max','out');
+ const d=document.createElement('div');d.className='thumb';d.innerHTML=`<span>${t.title}</span><div style="width:${ww*s}px;height:${hh*s}px"></div>`;$('div',d).appendChild(c);document.body.appendChild(d);
+ d.style.left=Math.max(4,t.getBoundingClientRect().left+23-d.offsetWidth/2)+'px'},true);
+$('#tasks').addEventListener('pointerleave',th,true);$('#tasks').addEventListener('click',th,true);
 </script>
 </body>
 </html>
